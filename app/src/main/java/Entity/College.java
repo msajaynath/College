@@ -7,11 +7,12 @@ import com.orm.SugarRecord;
  */public class College extends SugarRecord {
     public String name,colfacilities,hostelfacilities,fees,routemap,city,address;
     public String latitude,longitude;
+    public int rank;
 
     // You must provide an empty constructor
     public College() {}
 
-    public College(String name, String colfacilities,String hostelfacilities,String address, String city,String latitude,String longitude)
+    public College(String name, String colfacilities,String hostelfacilities,String address, String city,String latitude,String longitude,int rank)
     {
         this.name=name;
         this.colfacilities=colfacilities;
@@ -20,6 +21,7 @@ import com.orm.SugarRecord;
         this.city=city;
         this.latitude=latitude;
         this.longitude=longitude;
+        this.rank=rank;
 
     }
 

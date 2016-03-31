@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import Adapter.MySimpleArrayAdapter;
@@ -53,7 +55,7 @@ public class ResultActivity extends AppCompatActivity {
 
                 }
                 clist = clist.replaceFirst(",", "");
-                listItems.add(new ListItem(c.name, c.address, clist));
+                listItems.add(new ListItem(c.name, c.address, clist,c.getId(),c.rank));
                 // ListItem l=new ListItem();
             }
 
@@ -81,9 +83,20 @@ public class ResultActivity extends AppCompatActivity {
             for (Courses c : notes) {
                 College col = College.findById(College.class, c.college.getId());
 
-                listItems.add(new ListItem(col.name, col.address, course));
+                listItems.add(new ListItem(col.name, col.address, course,col.getId(),col.rank));
                 // ListItem l=new ListItem();
             }
+
+            Collections.sort(listItems, new Comparator<ListItem>() {
+                @Override
+                public int compare(ListItem z1, ListItem z2) {
+                    if (z1.rank > z2.rank)
+                        return 1;
+                    if (z1.rank < z2.rank)
+                        return -1;
+                    return 0;
+                }
+            });
 
             MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this, listItems);
             listview.setAdapter(adapter);
@@ -92,7 +105,7 @@ public class ResultActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent in = new Intent(ResultActivity.this, DetailActivity.class);
-                    in.putExtra("logid", notes.get(position).getId());
+                    in.putExtra("logid", listItems.get(position).id);
                     in.putExtra("courses", listItems.get(position).course);
                     startActivity(in);
 
@@ -134,7 +147,7 @@ public class ResultActivity extends AppCompatActivity {
                 final List<College> notes = College.findWithQuery(College.class, "Select * from College   ORDER BY (ABS("+lat+") - latitude) + ABS("+lon+" - longitude) ASC");
                 for(College c : notes)
             {
-                List<Courses> courseList = Courses.findWithQuery(Courses.class, "Select * from Courses where college = ?",c.getId()+"");
+                List<Courses> courseList = Courses.findWithQuery(Courses.class, "Select * from Courses where college = ? order by rank",c.getId()+"");
                 String clist="";
                 for(Courses cc :courseList)
                 {
@@ -142,7 +155,7 @@ public class ResultActivity extends AppCompatActivity {
 
                 }
                 clist=clist.replaceFirst(",","");
-                listItems.add(new ListItem(c.name,c.address,clist));
+                listItems.add(new ListItem(c.name,c.address,clist,c.getId(),c.rank));
                 // ListItem l=new ListItem();
             }
 

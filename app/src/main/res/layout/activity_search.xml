@@ -49,17 +49,6 @@
         android:layout_alignRight="@+id/city"
         android:layout_alignEnd="@+id/city" />
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nearest Colleges"
-        android:id="@+id/raddist"
-        android:layout_below="@+id/radcour"
-        android:layout_alignLeft="@+id/radcour"
-        android:layout_alignStart="@+id/radcour"
-        android:layout_marginTop="42dp"
-        android:checked="false" />
-
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"

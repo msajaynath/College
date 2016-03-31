@@ -65,4 +65,14 @@
         android:id="@+id/login"
         android:layout_below="@+id/view2"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/skiplogintext"
+        android:textColor="#6666FF"
+        android:id="@+id/logskip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/login" />
 </RelativeLayout>

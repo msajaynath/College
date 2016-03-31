@@ -34,7 +34,7 @@ public class MySimpleArrayAdapter extends ArrayAdapter<ListItem> {
     TextView courses = (TextView) rowView.findViewById(R.id.course);
 
     name.setText(values.get(position).name);
-    address.setText(values.get(position).address);
+   // address.setText(values.get(position).address);
     courses.setText(values.get(position).course);
 
     return rowView;

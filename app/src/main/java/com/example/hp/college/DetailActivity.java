@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class DetailActivity extends AppCompatActivity {
         Intent in=getIntent();
         long id=in.getLongExtra("logid", 0);
         String  coursess=in.getStringExtra("courses");
+        Log.d("log",id+"");
         final College c=College.findById(College.class,id);
         name.setText(c.name);
         address.setText(c.address);
@@ -39,8 +41,10 @@ public class DetailActivity extends AppCompatActivity {
         route.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String uri = String.format(Locale.ENGLISH, "geo:%s,%s", c.latitude, c.longitude);
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                String url = "http://maps.google.com/maps?&daddr="+c.latitude+","+c.longitude+"";
+
+                //String uri = String.format(Locale.ENGLISH, "geo:%s,%s", c.latitude, c.longitude);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
             }
         });

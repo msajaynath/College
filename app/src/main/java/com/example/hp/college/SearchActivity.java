@@ -27,7 +27,7 @@ import Entity.Courses;
 
 public class SearchActivity extends AppCompatActivity {
     AutoCompleteTextView city, course;
-    RadioButton radc, radcou, raddist;
+    RadioButton radc, radcou;
     Button search;
     private ImageView logout, my_bio;
 
@@ -37,6 +37,15 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         logout = (ImageView) findViewById(R.id.logout);
         my_bio = (ImageView) findViewById(R.id.mybio);
+        Intent intent=getIntent();
+        if(intent.getBooleanExtra("skipped",false))
+        {
+            logout.setVisibility(View.INVISIBLE);
+            my_bio.setVisibility(View.INVISIBLE);
+
+
+        }
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +73,7 @@ public class SearchActivity extends AppCompatActivity {
         radc = (RadioButton) findViewById(R.id.radcity);
         search = (Button) findViewById(R.id.search);
         radcou = (RadioButton) findViewById(R.id.radcour);
-        raddist = (RadioButton) findViewById(R.id.raddist);
+     //   raddist = (RadioButton) findViewById(R.id.raddist);
 
         city = (AutoCompleteTextView)
                 findViewById(R.id.city);
@@ -111,7 +120,8 @@ public class SearchActivity extends AppCompatActivity {
                     course.setEnabled(false);
                     city.setEnabled(true);
                     radcou.setChecked(false);
-                    raddist.setChecked(false);
+                    course.setText("");
+                   // raddist.setChecked(false);
                 }
 
             }
@@ -124,25 +134,28 @@ public class SearchActivity extends AppCompatActivity {
                 if (isChecked) {
                     course.setEnabled(true);
                     city.setEnabled(false);
-                    raddist.setChecked(false);
+                   // raddist.setChecked(false);
                     radc.setChecked(false);
+                    city.setText("");
+
+
                 }
 
             }
         });
 
-        raddist.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    course.setEnabled(false);
-                    city.setEnabled(false);
-                    radcou.setChecked(false);
-                    radc.setChecked(false);
-                }
-
-            }
-        });
+//        raddist.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    course.setEnabled(false);
+//                    city.setEnabled(false);
+//                    radcou.setChecked(false);
+//                    radc.setChecked(false);
+//                }
+//
+//            }
+//        });
 
 
         search.setOnClickListener(new View.OnClickListener() {
@@ -164,12 +177,12 @@ public class SearchActivity extends AppCompatActivity {
 
                 }
 
-                if (raddist.isChecked()) {
-                    Intent intent = new Intent(SearchActivity.this, ResultActivity.class);
-                    intent.putExtra("isloc", true);
-                    startActivity(intent);
-
-                }
+//                if (raddist.isChecked()) {
+//                    Intent intent = new Intent(SearchActivity.this, ResultActivity.class);
+//                    intent.putExtra("isloc", true);
+//                    startActivity(intent);
+//
+//                }
 
             }
         });
