@@ -27,7 +27,7 @@ import Entity.Courses;
 
 public class SearchActivity extends AppCompatActivity {
     AutoCompleteTextView city, course;
-    RadioButton radc, radcou;
+   // RadioButton radc, radcou;
     Button search;
     private ImageView logout, my_bio;
 
@@ -70,9 +70,9 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
-        radc = (RadioButton) findViewById(R.id.radcity);
+        //radc = (RadioButton) findViewById(R.id.radcity);
         search = (Button) findViewById(R.id.search);
-        radcou = (RadioButton) findViewById(R.id.radcour);
+       // radcou = (RadioButton) findViewById(R.id.radcour);
      //   raddist = (RadioButton) findViewById(R.id.raddist);
 
         city = (AutoCompleteTextView)
@@ -99,7 +99,7 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         }
-        course.setEnabled(false);
+        //course.setEnabled(false);
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
@@ -113,36 +113,36 @@ public class SearchActivity extends AppCompatActivity {
 
         course.setThreshold(1);
         course.setAdapter(adapter2);
-        radc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    course.setEnabled(false);
-                    city.setEnabled(true);
-                    radcou.setChecked(false);
-                    course.setText("");
-                   // raddist.setChecked(false);
-                }
-
-            }
-        });
-
-
-        radcou.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    course.setEnabled(true);
-                    city.setEnabled(false);
-                   // raddist.setChecked(false);
-                    radc.setChecked(false);
-                    city.setText("");
+//        radc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    course.setEnabled(false);
+//                    city.setEnabled(true);
+//                    radcou.setChecked(false);
+//                    course.setText("");
+//                   // raddist.setChecked(false);
+//                }
+//
+//            }
+//        });
 
 
-                }
-
-            }
-        });
+//        radcou.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    course.setEnabled(true);
+//                    city.setEnabled(false);
+//                   // raddist.setChecked(false);
+//                    radc.setChecked(false);
+//                    city.setText("");
+//
+//
+//                }
+//
+//            }
+//        });
 
 //        raddist.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 //            @Override
@@ -161,21 +161,27 @@ public class SearchActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (radc.isChecked()) {
-                    Intent intent = new Intent(SearchActivity.this, ResultActivity.class);
-                    intent.putExtra("iscity", true);
-                    intent.putExtra("city", city.getText().toString());
-                    startActivity(intent);
 
-                }
-
-                if (radcou.isChecked()) {
-                    Intent intent = new Intent(SearchActivity.this, ResultActivity.class);
-                    intent.putExtra("iscourse", true);
-                    intent.putExtra("course", course.getText().toString());
-                    startActivity(intent);
-
-                }
+                Intent intent = new Intent(SearchActivity.this, ResultActivity.class);
+               // intent.putExtra("iscity", true);
+                intent.putExtra("city", city.getText().toString()+"");
+                intent.putExtra("course", course.getText().toString()+"");
+                startActivity(intent);
+//                if (radc.isChecked()) {
+//                    Intent intent = new Intent(SearchActivity.this, ResultActivity.class);
+//                    intent.putExtra("iscity", true);
+//                    intent.putExtra("city", city.getText().toString());
+//                    startActivity(intent);
+//
+//                }
+//
+//                if (radcou.isChecked()) {
+//                    Intent intent = new Intent(SearchActivity.this, ResultActivity.class);
+//                    intent.putExtra("iscourse", true);
+//                    intent.putExtra("course", course.getText().toString());
+//                    startActivity(intent);
+//
+//                }
 
 //                if (raddist.isChecked()) {
 //                    Intent intent = new Intent(SearchActivity.this, ResultActivity.class);

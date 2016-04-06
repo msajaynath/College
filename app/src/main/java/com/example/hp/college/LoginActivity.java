@@ -15,6 +15,7 @@ import java.util.List;
 
 import Entity.College;
 import Entity.Courses;
+import Entity.Review;
 import Entity.User;
 
 public class LoginActivity extends AppCompatActivity {
@@ -116,6 +117,16 @@ public class LoginActivity extends AppCompatActivity {
             new Courses("MBBS",College.findById(College.class,7)).save();
 
 
+
+            new Review(College.findById(College.class,1),User.findById(User.class,1),"This is a test review.").save();
+            new Review(College.findById(College.class,2),User.findById(User.class,1),"This is a test review.").save();
+            new Review(College.findById(College.class,3),User.findById(User.class,1),"This is a test review.").save();
+            new Review(College.findById(College.class,6),User.findById(User.class,1),"This is a test review.").save();
+
+            new Review(College.findById(College.class,1),User.findById(User.class,2),"This is my test review.").save();
+            new Review(College.findById(College.class,2),User.findById(User.class,2),"This is my test review.").save();
+            new Review(College.findById(College.class,3),User.findById(User.class,2),"This is my test review.").save();
+            new Review(College.findById(College.class,6),User.findById(User.class,2),"This is my test review.").save();
 
 
         }
